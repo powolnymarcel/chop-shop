@@ -3,8 +3,11 @@
 angular.module('chopShopApp')
   .controller('NavbarCtrl', function ($scope, Auth) {
     $scope.menu = [{
-      'title': 'Home',
+      'title': 'Accueil',
       'state': 'main'
+    }, {
+      'title': 'Produits',
+      'state': 'produits'
     }];
 
     $scope.isCollapsed = true;

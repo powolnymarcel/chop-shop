@@ -24,7 +24,7 @@ Ce projet a été géneré avec [Angular Full-Stack Generator](https://github.co
 - mongo v3.0.5
 - express v4.13.1
 - VisualCppBuildTools_Full v14.0.24720.0
-
+- Navigateur : chrome canary & Firefox dev
 ### Démarrer
 
 1. Executer `npm install` afin d'installer les dépendances coté serveur.
@@ -34,24 +34,6 @@ Ce projet a été géneré avec [Angular Full-Stack Generator](https://github.co
 3. Executer `mongod` dans un invite de commande séparé afin de pouvoir communiquer avec mongoDB.
 
 4. Executer `grunt serve` pour démarrer le serveur de développement. Cette commande lancera automatiquement le navigateur internet par défaut.
-
-## Coding time!
-
-Pour démarrer nous allons créer la page produits
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ## Infos ##
@@ -64,4 +46,4 @@ Pour démarrer nous allons créer la page produits
 *Utilisation de MarkdownPad 2 pour creer des "*.md"
 
 
-**Questions?** [Via twitter](https://twitter.com/Marcpowo) ou mieux [Créer un rapport](https://github.com/powolnymarcel/siteExpressReparationPC/issues)
+**Questions?** [Via twitter](https://twitter.com/Marcpowo) ou mieux [Créer un rapport](https://github.com/powolnymarcel/chop-shop/issues)
