@@ -1,0 +1,29 @@
+<navbar></navbar>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-md-4">
+      <h1>Products</h1>
+      <p ng-show="produits.length < 1">Aucuns produits à afficher</p>
+      <a ui-sref="nouveauProduit">Nouveau produit</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 col-md-4" ng-repeat="produit in produits">
+      <div class="thumbnail">
+        <img src="http://placehold.it/300x200"
+             alt="{{produit.title}}">
+        <div class="caption">
+          <h3>{{produit.title}}</h3>
+          <p>{{produit.description | limitTo: 100}} ...</p>
+          <p>{{produit.price | currency:"€" }}</p>
+          <p>
+            <a href="#" class="btn btn-primary" role="button">Acheter</a>
+            <a ui-sref="voirProduit({id: produit._id})"
+               class="btn btn-default" role="button">Details</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer></footer>

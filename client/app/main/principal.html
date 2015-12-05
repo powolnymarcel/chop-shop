@@ -1,0 +1,33 @@
+<navbar></navbar>
+<header class="hero-unit" id="banner">
+  <div class="container">
+    <h1>Chop-shop</h1>
+    <p class="lead">Le meilleur shop MEAN online</p>
+    <img src="assets/images/logo.png" id="logoBurger" alt="the meanstack shop">
+  </div>
+</header>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">Produits en vedette</h1>
+      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6"
+          ng-repeat="produit in produits">
+        <li><a ui-sref="voirProduit({id: produit._id})"
+               tooltip="{{produit.description}}">
+          {{produit.title}} -
+          <span class="text-muted">{{produit.price | currency:"€"}}</span>
+        </a></li>
+      </ul>
+    </div>
+  </div>
+  <form class="thing-form">
+    <label>Vendez votre produit</label>
+    <p class="input-group">
+<span class="input-group-btn">
+<button class="btn btn-primary"
+        ui-sref="nouveauProduit()">Ajouter un nouveau</button>
+</span>
+    </p>
+  </form>
+</div>
+<footer></footer>

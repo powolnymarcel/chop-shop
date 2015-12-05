@@ -5,7 +5,7 @@ angular.module('chopShopApp')
     $stateProvider
       .state('main', {
         url: '/',
-        templateUrl: 'app/main/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'app/main/principal.html',
+        controller: 'PrincipalCtrl'
       });
   });

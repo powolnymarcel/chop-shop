@@ -1,13 +1,13 @@
 'use strict';
 
-describe('Controller: MainCtrl', function() {
+describe('Controller: PrincipalCtrl', function() {
 
   // load the controller's module
   beforeEach(module('chopShopApp'));
   beforeEach(module('stateMock'));
   beforeEach(module('socketMock'));
 
-  var MainCtrl;
+  var PrincipalCtrl;
   var scope;
   var state;
   var $httpBackend;
@@ -20,7 +20,7 @@ describe('Controller: MainCtrl', function() {
 
     scope = $rootScope.$new();
     state = $state;
-    MainCtrl = $controller('MainCtrl', {
+    PrincipalCtrl = $controller('PrincipalCtrl', {
       $scope: scope
     });
   }));

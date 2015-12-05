@@ -16,3 +16,17 @@ describe('Service: produits', function () {
   });
 
 });
+
+
+describe('Service: Produits', function () {
+// load the service's module
+  beforeEach(module('chopShopApp'));
+// instantiate service
+  var Produits;
+  beforeEach(inject(function (_Produits_) {
+    Produits = _Produits_;
+  }));
+  it('should do something', function () {
+    expect(!!Produits).to.be.true;
+  });
+});
