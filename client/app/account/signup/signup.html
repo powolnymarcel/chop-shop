@@ -3,19 +3,19 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12">
-      <h1>Sign up</h1>
+      <h1>Inscription</h1>
     </div>
     <div class="col-sm-12">
       <form class="form" name="form" ng-submit="register(form)" novalidate>
 
         <div class="form-group" ng-class="{ 'has-success': form.name.$valid && submitted,
                                             'has-error': form.name.$invalid && submitted }">
-          <label>Name</label>
+          <label>Nom</label>
 
           <input type="text" name="name" class="form-control" ng-model="user.name"
                  required/>
           <p class="help-block" ng-show="form.name.$error.required && submitted">
-            A name is required
+            Un nom est requis
           </p>
         </div>
 
@@ -27,10 +27,10 @@
                  required
                  mongoose-error/>
           <p class="help-block" ng-show="form.email.$error.email && submitted">
-            Doesn't look like a valid email.
+           Ceci n'est pas un email valide, exemple d'email valide: demo@gmail.com
           </p>
           <p class="help-block" ng-show="form.email.$error.required && submitted">
-            What's your email address?
+            Quelle est votre adresse e-mail?
           </p>
           <p class="help-block" ng-show="form.email.$error.mongoose">
             {{ errors.email }}
@@ -47,7 +47,7 @@
                  mongoose-error/>
           <p class="help-block"
              ng-show="(form.password.$error.minlength || form.password.$error.required) && submitted">
-            Password must be at least 3 characters.
+            Le mot de passe doit etre d'au moins 3 caractères
           </p>
           <p class="help-block" ng-show="form.password.$error.mongoose">
             {{ errors.password }}
@@ -56,23 +56,23 @@
 
         <div>
           <button class="btn btn-inverse btn-lg btn-register" type="submit">
-            Sign up
+            Inscription
           </button>
           <a class="btn btn-default btn-lg btn-login" ui-sref="login">
-            Login
+            Connexion
           </a>
         </div>
 
         <hr>
         <div>
           <a class="btn btn-facebook" href="" ng-click="loginOauth('facebook')">
-            <i class="fa fa-facebook"></i> Connect with Facebook
+            <i class="fa fa-facebook"></i> Connectez-vous avec Facebook
           </a>
           <a class="btn btn-google-plus" href="" ng-click="loginOauth('google')">
-            <i class="fa fa-google-plus"></i> Connect with Google+
+            <i class="fa fa-google-plus"></i> Connectez-vous avec Google+
           </a>
           <a class="btn btn-twitter" href="" ng-click="loginOauth('twitter')">
-            <i class="fa fa-twitter"></i> Connect with Twitter
+            <i class="fa fa-twitter"></i> Connectez-vous avec Twitter
           </a>
         </div>
       </form>
