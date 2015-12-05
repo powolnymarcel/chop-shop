@@ -2,7 +2,7 @@
 Site e-commerce avec authentification facebook,twitter, google+
 Paiements paypal
 
-Ce projet a été géneré avec [Angular Full-Stack Generator](https://github.com/DaftMonk/generator-angular-fullstack) version 3.0.0-rc4.
+Le squelette du projet a été géneré avec [Angular Full-Stack Generator](https://github.com/DaftMonk/generator-angular-fullstack) version 3.0.0-rc4.
 
 ## Bien démarrer
 
