@@ -46,7 +46,7 @@ angular.module('chopShopApp')
     };
   })
   .controller('EditerProduitCtrl', function ($scope, $state,
-                                             $stateParams, Produits) {
+                                             $stateParams, Produits,Upload,$timeout) {
   $scope.produit = Produits.get({id: $stateParams.id});
 
     //Ici le get contient un id, donc
@@ -63,10 +63,38 @@ angular.module('chopShopApp')
         $state.go('voirProduit', {id: value._id});
       }, errorHandler($scope));
   };
+    $scope.upload = uploadHander($scope, Upload, $timeout);
 });
 
 errorHandler = function ($scope){
   return function error(httpResponse){
     $scope.errors = httpResponse;
+  };
+};
+
+uploadHander = function ($scope, Upload, $timeout) {
+  return function(file) {
+    if (file && !file.$error) {
+      $scope.file = file;
+      file.upload = Upload.upload({
+        url: '/api/produits/'+$scope.produit._id+'/upload',
+        file: file
+      });
+
+      file.upload.then(function (response) {
+        $timeout(function () {
+          file.result = response.data;
+        });
+      }, function (response) {
+        if (response.status > 0){
+          console.log(response.status + ': ' + response.data);
+          errorHandler($scope)(response.status + ': ' + response.data);
+        }
+      });
+
+      file.upload.progress(function (evt) {
+        file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+      });
+    }
   };
 };
