@@ -10,7 +10,7 @@ angular.module('chopShopApp')
                                            $stateParams, Produits) {
     $scope.produit = Produits.get({id: $stateParams.id});
     $scope.boutonSupprimerProduit = function(){
-     
+
       //*************************************************************************************************************
       //Une explication s'impose !!!!!!!!!!
       // On appelle la factory "Produits" ou le service "Produits", whatever...

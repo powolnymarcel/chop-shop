@@ -1,6 +1,8 @@
 'use strict';
 
-//Communique avec le serveur avec les actions de $resources
+//*******************************************************************************************
+//Communique avec le serveur GRACE AUX actions de $resources
+//*******************************************************************************************
 angular.module('chopShopApp')
   .factory('Produits', function ($resource) {
     return $resource('/api/produits/:id', null, {
@@ -13,6 +15,9 @@ angular.module('chopShopApp')
   });
 
 
+
+
+//Au début du projet on faisait appel aux data de façon 'statique'.
 /* angular.module('chopShopApp')
   .factory('Produits', function ($stateParams) {
     var last_id = 5;
