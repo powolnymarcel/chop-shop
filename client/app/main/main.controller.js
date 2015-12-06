@@ -2,5 +2,6 @@
 
 angular.module('chopShopApp')
   .controller('PrincipalCtrl', function($scope, $http, socket, Produits) {
-    $scope.produits = Produits.requete().slice(2);
+    // Produits pour le nom du factory et query pour le nom de l'action contenue dans les resources
+    $scope.produits = Produits.query();
   });

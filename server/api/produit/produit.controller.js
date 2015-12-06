@@ -1,16 +1,16 @@
 /**
  * Using Rails-like standard naming convention for endpoints.
- * GET     /api/things              ->  index
- * POST    /api/things              ->  create
- * GET     /api/things/:id          ->  show
- * PUT     /api/things/:id          ->  update
- * DELETE  /api/things/:id          ->  destroy
+ * GET     /api/produits              ->  index
+ * POST    /api/produits              ->  create
+ * GET     /api/produits/:id          ->  show
+ * PUT     /api/produits/:id          ->  update
+ * DELETE  /api/produits/:id          ->  destroy
  */
 
 'use strict';
 
 var _ = require('lodash');
-var Thing = require('./thing.model');
+var Produit = require('./produit.model');
 
 function handleError(res, statusCode) {
   statusCode = statusCode || 500;
@@ -59,43 +59,43 @@ function removeEntity(res) {
   };
 }
 
-// Gets a list of Things
-exports.index = function(req, res) {
-  Thing.findAsync()
+// Gets a list of Produits
+exports.balanceMoiLaListeDeTousLesProduits = function(req, res) {
+  Produit.findAsync()
     .then(responseWithResult(res))
     .catch(handleError(res));
 };
 
-// Gets a single Thing from the DB
-exports.show = function(req, res) {
-  Thing.findByIdAsync(req.params.id)
+// Gets a single Produit from the DB
+exports.montreMoiUnProduitUnique = function(req, res) {
+  Produit.findByIdAsync(req.params.id)
     .then(handleEntityNotFound(res))
     .then(responseWithResult(res))
     .catch(handleError(res));
 };
 
-// Creates a new Thing in the DB
-exports.create = function(req, res) {
-  Thing.createAsync(req.body)
+// Creates a new Produit in the DB
+exports.creeUnNouveauProduit = function(req, res) {
+  Produit.createAsync(req.body)
     .then(responseWithResult(res, 201))
     .catch(handleError(res));
 };
 
-// Updates an existing Thing in the DB
-exports.update = function(req, res) {
+// Updates an existing Produit in the DB
+exports.metAjourUnProduitExistant = function(req, res) {
   if (req.body._id) {
     delete req.body._id;
   }
-  Thing.findByIdAsync(req.params.id)
+  Produit.findByIdAsync(req.params.id)
     .then(handleEntityNotFound(res))
     .then(saveUpdates(req.body))
     .then(responseWithResult(res))
     .catch(handleError(res));
 };
 
-// Deletes a Thing from the DB
-exports.destroy = function(req, res) {
-  Thing.findByIdAsync(req.params.id)
+// Deletes a Produit from the DB
+exports.destructionSansReflechirDeUnProduit = function(req, res) {
+  Produit.findByIdAsync(req.params.id)
     .then(handleEntityNotFound(res))
     .then(removeEntity(res))
     .catch(handleError(res));

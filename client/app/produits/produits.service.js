@@ -1,7 +1,19 @@
 'use strict';
 
-
+//Communique avec le serveur avec les actions de $resources
 angular.module('chopShopApp')
+  .factory('Produits', function ($resource) {
+    return $resource('/api/produits/:id', null, {
+      //*******************************************************************************************
+      // AngularResources contient les actions -->>>>>> GET- save -query- remove -delete !!!!!!!!!!
+      //Mais pas de update donc on crée l'action : mettreAjourLeProduitAvecUnUpdate
+      //*******************************************************************************************
+      'mettreAjourLeProduitAvecUnUpdate': { method: 'PUT'}
+    });
+  });
+
+
+/* angular.module('chopShopApp')
   .factory('Produits', function ($stateParams) {
     var last_id = 5;
     var exemple_produits = [
@@ -52,3 +64,4 @@ angular.module('chopShopApp')
       }
     };
   });
+*/
