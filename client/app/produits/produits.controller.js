@@ -13,10 +13,11 @@ angular.module('chopShopApp')
 
       //*************************************************************************************************************
       //Une explication s'impose !!!!!!!!!!
-      // On appelle la factory "Produits" ou le service "Produits", whatever...
+      //Quand le client clique sur le bouton rouge "supprimer"
+      // On appelle le/la factory "Produits" ou le service "Produits", whatever...
       // Ce service retourne l'objet $resources qui contient les actions : get, save, query, delete,remove
-      // Ci dessous on a besoin de l'action "delete"
-      // Le module angular-resources utilise l'objet $http DONC on a un appel sur le serveru
+      // Dans ce cas ci, on a besoin de l'action "delete"
+      // Le module angular-resources utilise l'objet $http DONC on a un appel sur le serveur
       // Le serveur reçoit un $http de type delete
       // Pour le serveur un $http de type delete actionne l'action suivante du controlleur produit  : destructionSansReflechirDeUnProduit
       //*************************************************************************************************************

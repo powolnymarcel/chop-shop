@@ -59,14 +59,14 @@ function removeEntity(res) {
   };
 }
 
-// Gets a list of Produits
+// Récupère a liste de tous les produits
 exports.balanceMoiLaListeDeTousLesProduits = function(req, res) {
   Produit.findAsync()
     .then(responseWithResult(res))
     .catch(handleError(res));
 };
 
-// Gets a single Produit from the DB
+// Récupere un seul produit de la BDD
 exports.montreMoiUnProduitUnique = function(req, res) {
   Produit.findByIdAsync(req.params.id)
     .then(handleEntityNotFound(res))
@@ -74,14 +74,14 @@ exports.montreMoiUnProduitUnique = function(req, res) {
     .catch(handleError(res));
 };
 
-// Creates a new Produit in the DB
+// Crée un nouveau produit dans la BDD
 exports.creeUnNouveauProduit = function(req, res) {
   Produit.createAsync(req.body)
     .then(responseWithResult(res, 201))
     .catch(handleError(res));
 };
 
-// Updates an existing Produit in the DB
+// Mets à jour un produit dans la BDD
 exports.metAjourUnProduitExistant = function(req, res) {
   if (req.body._id) {
     delete req.body._id;
@@ -93,7 +93,7 @@ exports.metAjourUnProduitExistant = function(req, res) {
     .catch(handleError(res));
 };
 
-// Deletes a Produit from the DB
+// Supprime un produit dans la BDD
 exports.destructionSansReflechirDeUnProduit = function(req, res) {
   Produit.findByIdAsync(req.params.id)
     .then(handleEntityNotFound(res))
