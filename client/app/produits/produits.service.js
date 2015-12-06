@@ -2,6 +2,7 @@
 
 //*******************************************************************************************
 //Communique avec le serveur GRACE AUX actions de $resources
+//Le factory c'est comme un camion qui transporte des marchandises d'un point A à un point B
 //*******************************************************************************************
 angular.module('chopShopApp')
   .factory('Produits', function ($resource) {

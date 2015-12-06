@@ -42,6 +42,15 @@ angular.module('chopShopApp')
   .controller('EditerProduitCtrl', function ($scope, $state,
                                              $stateParams, Produits) {
   $scope.produit = Produits.get({id: $stateParams.id});
+
+    //Ici le get contient un id, donc
+    //Le service vans dans $resources
+    //Dans resources un get fait un $http sur le serveur
+    //Le serveur reçoit l'appel et remarque qu'un id est présent
+    //Le serveur active la route /:id
+    //Cette route dit : Active "montreMoiUnProduitUnique" dans le controlleur produit.controller.js, toujours coté serveur
+    // La reponse est reçue dans le callback success
+    //On affiche la vue voirProduit de l'id concerné
   $scope.boutonEditerProduit = function(){
     Produits.mettreAjourLeProduitAvecUnUpdate({id: $scope.produit._id},
       $scope.produit, function success(value /*, responseHeaders*/){
