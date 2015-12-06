@@ -12,7 +12,7 @@ angular.module('chopShopApp')
     $scope.boutonSupprimerProduit = function(){
 
       //*************************************************************************************************************
-      //Une explication s'impose !!!!!!!!!!
+      //Une explication s'impose !!!!!!!!!! L'explication ci dessous s'applique aux controlleurs listés dans ce fichier, évidemment seul le nom des actions changent
       //Quand le client clique sur le bouton rouge "supprimer"
       // On appelle le/la factory "Produits" ou le service "Produits", whatever...
       // Ce service retourne l'objet $resources qui contient les actions : get, save, query, delete,remove
@@ -24,6 +24,8 @@ angular.module('chopShopApp')
       Produits.delete({id: $scope.produit._id},
 
         function success(/* value, responseHeaders */) {
+          //Si tout s'est bien passé, on demande l'affichage de l'état 'produits'
+          //Les états se trouvent coté clients dans le fichier produits.js
           $state.go('produits');
         }, errorHandler($scope));
     };
