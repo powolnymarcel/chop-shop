@@ -38,8 +38,12 @@ angular.module('chopShopApp')
     };
   })
   .controller('NouveauProduitCtrl', function ($scope, $state, Produits) {
+    console.log('*****************************');
+    console.log($scope.file);
+
     $scope.produit = {}; // create a new instance
     $scope.boutonAjouterProduit = function(){
+      $scope.produit.imageUrl=$scope.file.result.imageUrl;
       Produits.save($scope.produit,
         function success(value /*, responseHeaders*/){
           $state.go('voirProduit', {id: value._id});
@@ -59,7 +63,9 @@ angular.module('chopShopApp')
     // La reponse est reçue dans le callback success
     //On affiche la vue voirProduit de l'id concerné
   $scope.boutonEditerProduit = function(){
-    console.log($scope.produit);
+    console.log('**************Activation action EDIT******************');
+    //Assignation du path de la nouvelle image au scope du produit
+    $scope.produit.imageUrl=$scope.file.result.imageUrl;
     Produits.mettreAjourLeProduitAvecUnUpdate({id: $scope.produit._id},
       $scope.produit, function success(value /*, responseHeaders*/){
         $state.go('voirProduit', {id: value._id});

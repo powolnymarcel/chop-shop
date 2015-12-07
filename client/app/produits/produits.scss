@@ -22,3 +22,14 @@
 .imgProdListing{
   width: 60%;
 }
+.progress {
+  border: 3px groove #ccc;
+  display: inline-block;
+  width: 100px;
+  height: auto !important;
+}
+.progress div {
+  background: forestgreen none repeat scroll 0 0;
+  font-size: smaller;
+  width: 0;
+}
