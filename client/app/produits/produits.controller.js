@@ -59,6 +59,7 @@ angular.module('chopShopApp')
     // La reponse est reçue dans le callback success
     //On affiche la vue voirProduit de l'id concerné
   $scope.boutonEditerProduit = function(){
+    console.log($scope.produit);
     Produits.mettreAjourLeProduitAvecUnUpdate({id: $scope.produit._id},
       $scope.produit, function success(value /*, responseHeaders*/){
         $state.go('voirProduit', {id: value._id});

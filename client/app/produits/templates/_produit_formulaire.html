@@ -8,14 +8,23 @@
          class="drop-box"
          ngf-drag-over-class="dragover" ngf-multiple="true"
          ngf-pattern="'image/*'" ngf-max-size="15MB"
-         accept="image/*">Déposer les images ici ou cliquer ici pour uploader</div>
+         accept="image/*">Glisser/Déposer les images ici ou cliquer ici pour choisir un fichier</div>
     <div ngf-no-file-drop>Le glisser/deposer n'est pas supporté par votre navigateur, changez de navigateur</div>
     <button accept="image/*" ngf-max-size="15MB" type="file"
-            class="btn btn-primary" ngf-select="upload($file)">uploader à la selection du fichier</button>
-    <h2 ng-show="file">Preview</h2>
+            class="btn btn-primary" ngf-select="upload($file)">Commencer à la selection du fichier</button>
+    <img class="imgAccueil" ngf-src="produit.imageUrl" class="thumb">
+              <span class="progress" ng-show="file.progress >= 0">
+                  <div class="ng-binding" style="width:{{file.progress}}%" ng-bind="file.progress + '%'"></div>
+              </span>
+    <span ng-show="file.result" style="color: forestgreen">Upload effectué avec succes</span>
+    <div ng-show="file">
+    <h2 ng-show="file">Previsualisation de la nouvelle image</h2>
     <img ngf-src="file" width="170px">
     <div ng-show="file">{{file.name}} {{file.$error}}
       {{file.$errorParam}}</div>
+      <hr>
+    </div>
+    <hr>
   </div>
   <div class="col-md-10">
     <div class="form-group">

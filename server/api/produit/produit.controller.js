@@ -21,18 +21,6 @@ function handleError(res, statusCode) {
 }
 
 
-function saveFile(res, file) {
-  return function(entity){
-    var newPath = '/assets/uploads/' + path.basename(file.path);
-    entity.imageUrl = newPath;
-    return entity.saveAsync().spread(function(updated) {
-      console.log(updated);
-      return updated;
-    });
-  }
-}
-
-
 function responseWithResult(res, statusCode) {
   statusCode = statusCode || 200;
   return function(entity) {
@@ -73,20 +61,16 @@ function removeEntity(res) {
   };
 }
 
-//Upload la nouvelle image
-exports.upload = function(req, res) {
-  var file = req.files.file;
-  if(!file){
-    return handleError(res)('File not provided');
+function saveFile(res, file) {
+  return function(entity){
+    var newPath = '/assets/uploads/' + path.basename(file.path);
+    entity.imageUrl = newPath;
+    return entity.saveAsync().spread(function(updated) {
+      console.log(updated);
+      return updated;
+    });
   }
-
-  Produit.findByIdAsync(req.params.id)
-    .then(handleEntityNotFound(res))
-    .then(saveFile(res, file))
-    .then(responseWithResult(res))
-    .catch(handleError(res));
-};
-
+}
 
 // Récupère a liste de tous les produits
 exports.balanceMoiLaListeDeTousLesProduits = function(req, res) {
@@ -130,3 +114,19 @@ exports.destructionSansReflechirDeUnProduit = function(req, res) {
     .then(removeEntity(res))
     .catch(handleError(res));
 };
+
+
+//Upload la nouvelle image
+exports.upload = function(req, res) {
+  var file = req.files.file;
+  if(!file){
+    return handleError(res)('File not provided');
+  }
+
+  Produit.findByIdAsync(req.params.id)
+    .then(handleEntityNotFound(res))
+    .then(saveFile(res, file))
+    .then(responseWithResult(res))
+    .catch(handleError(res));
+};
+

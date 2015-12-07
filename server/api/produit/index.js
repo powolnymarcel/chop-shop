@@ -6,7 +6,7 @@ var controller = require('./produit.controller');
 var multiparty = require('connect-multiparty');
 var uploadOptions = { autoFile: true,
   uploadDir: 'client/assets/uploads/'
-}
+};
 
 var router = express.Router();
 
