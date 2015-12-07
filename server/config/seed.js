@@ -6,22 +6,49 @@
 'use strict';
 
 var User = require('../api/user/user.model');
+//var Produits = require('../api/produit/produit.model');
 
 User.find({}).removeAsync()
   .then(function() {
     User.createAsync({
-      provider: 'local',
-      name: 'Test User',
-      email: 'test@test.com',
-      password: 'test'
-    }, {
-      provider: 'local',
-      role: 'admin',
-      name: 'Admin',
-      email: 'admin@admin.com',
-      password: 'admin'
-    })
-    .then(function() {
-      console.log('finished populating users');
-    });
+        provider: 'local',
+        name: 'Test User',
+        email: 'test@test.com',
+        password: 'test'
+      }, {
+        provider: 'local',
+        role: 'admin',
+        name: 'Admin',
+        email: 'admin@admin.com',
+        password: 'admin'
+      })
+      .then(function() {
+        console.log('finished populating users');
+      });
   });
+
+//Produits.find({}).removeAsync()
+// .then(function() {
+//   Produits.createAsync({
+//       title: 'MEAN eCommerce Book',
+//       imageUrl: '/assets/uploads/dog.jpg',
+//       price: 25,
+//       stock: 250,
+//       description: 'Build a powerful e-commerce application quickly with MEAN, a leading full-JavaScript stack. It takes you step-by-step from creating a real-world store to managing details such as authentication, shopping carts, payment, scalability and more.'
+//     }, {
+//       title: 'tshirt',
+//       imageUrl: '/assets/uploads/dog.jpg',
+//       price: 15,
+//       stock: 100,
+//       description: 'tshirt with the MEAN logo'
+//     }, {
+//       title: 'coffee mug',
+//       imageUrl: '/assets/uploads/dog.jpg',
+//       price: 8,
+//       stock: 50,
+//       description: 'Convert coffee into MEAN code'
+//     })
+//     .then(function() {
+//       console.log('finished populating products');
+//     });
+// });

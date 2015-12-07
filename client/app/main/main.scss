@@ -113,7 +113,10 @@
 .sousMenu{
   position: absolute;
   bottom: -45px;
-
+  left: 27%;
+}
+.sousMenu .btn{
+  padding: 5px 10px;
 }
 .list-unstyled > li {
   display: inline;
@@ -136,9 +139,19 @@
   transition: all 1s;
 }
 
+.imgAccueil{
+  width: 50%;
+}
+.nouveau li{
+  min-height:210px;
+}
+.nouveau li a {
+  max-height: 210px;
+  overflow: hidden;
+}
 
 
-
+/* ANIMATE CSS*/
 
 @charset "UTF-8";
 

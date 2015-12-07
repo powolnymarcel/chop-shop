@@ -11,6 +11,7 @@
 
 var _ = require('lodash');
 var Produit = require('./produit.model');
+var path = require('path');
 
 function handleError(res, statusCode) {
   statusCode = statusCode || 500;
@@ -18,6 +19,19 @@ function handleError(res, statusCode) {
     res.status(statusCode).send(err);
   };
 }
+
+
+function saveFile(res, file) {
+  return function(entity){
+    var newPath = '/assets/uploads/' + path.basename(file.path);
+    entity.imageUrl = newPath;
+    return entity.saveAsync().spread(function(updated) {
+      console.log(updated);
+      return updated;
+    });
+  }
+}
+
 
 function responseWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -59,6 +73,21 @@ function removeEntity(res) {
   };
 }
 
+//Upload la nouvelle image
+exports.upload = function(req, res) {
+  var file = req.files.file;
+  if(!file){
+    return handleError(res)('File not provided');
+  }
+
+  Produit.findByIdAsync(req.params.id)
+    .then(handleEntityNotFound(res))
+    .then(saveFile(res, file))
+    .then(responseWithResult(res))
+    .catch(handleError(res));
+};
+
+
 // Récupère a liste de tous les produits
 exports.balanceMoiLaListeDeTousLesProduits = function(req, res) {
   Produit.findAsync()
@@ -76,6 +105,7 @@ exports.montreMoiUnProduitUnique = function(req, res) {
 
 // Crée un nouveau produit dans la BDD
 exports.creeUnNouveauProduit = function(req, res) {
+  console.log(req.body);
   Produit.createAsync(req.body)
     .then(responseWithResult(res, 201))
     .catch(handleError(res));

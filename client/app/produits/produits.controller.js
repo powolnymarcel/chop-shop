@@ -1,5 +1,6 @@
 'use strict';
-var errorHandler;
+var errorHandler,uploadHandler;
+
 angular.module('chopShopApp')
   .controller('ProduitsCtrl', function ($scope,Produits) {
 
@@ -63,7 +64,7 @@ angular.module('chopShopApp')
         $state.go('voirProduit', {id: value._id});
       }, errorHandler($scope));
   };
-    $scope.upload = uploadHander($scope, Upload, $timeout);
+    $scope.upload = uploadHandler($scope, Upload, $timeout);
 });
 
 errorHandler = function ($scope){
@@ -72,7 +73,7 @@ errorHandler = function ($scope){
   };
 };
 
-uploadHander = function ($scope, Upload, $timeout) {
+uploadHandler = function ($scope, Upload, $timeout) {
   return function(file) {
     if (file && !file.$error) {
       $scope.file = file;

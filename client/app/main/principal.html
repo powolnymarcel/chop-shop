@@ -16,15 +16,15 @@
           ng-repeat="produit in produits">
         <li ng-mouseenter="myVar=true;myVar2=false;" ng-mouseleave="myVar=false;myVar2=true;"  >
           <a ui-sref="voirProduit({id: produit._id})"
-               > <img src="http://placehold.it/90x90"
+               > <img class="imgAccueil" src="{{produit.imageUrl}}"
                                                        alt="{{produit.title}}">
           {{produit.title}} -
           <span class="text-muted" tooltip="{{produit.description}}">{{produit.price | currency:"€"}}</span>
         </a>
         <div class="sousMenu" ng-class="{classe1:myVar,animated:myVar,bounce:myVar,classe2:myVar2}">
           <ul class="list-unstyled">
-            <li><button class="btn btn-warning"><span class="glyphicon glyphicon-eye-open"></span> Voir </button></li>
-            <li><button class="btn btn-success"><span class="glyphicon glyphicon-eye-open"></span> Acheter</button></li>
+            <li><button class="btn btn-warning" ui-sref="voirProduit({id: produit._id})"><span class="glyphicon glyphicon-eye-open"></span> Voir </button></li>
+            <li><button class="btn btn-success" ui-sref="voirProduit({id: produit._id})"><span class="glyphicon glyphicon-eye-open"></span> Acheter</button></li>
           </ul>
         </div>
         </li>
