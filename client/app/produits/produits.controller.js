@@ -1,5 +1,5 @@
 'use strict';
-var errorHandler,uploadHandler;
+var errorHandler,uploadHandler,uploadHandler2;
 
 angular.module('chopShopApp')
   .controller('ProduitsCtrl', function ($scope,Produits) {
@@ -37,15 +37,22 @@ angular.module('chopShopApp')
         }, errorHandler($scope));
     };
   })
-  .controller('NouveauProduitCtrl', function ($scope, $state, Produits) {
+  .controller('NouveauProduitCtrl', function ($scope, $state, Produits,Upload,$timeout) {
     console.log('*****************************');
-    console.log($scope.file);
-
+    $scope.upload = uploadHandler2($scope, Upload, $timeout);
     $scope.produit = {}; // create a new instance
     $scope.boutonAjouterProduit = function(){
-      $scope.produit.imageUrl=$scope.file.result.imageUrl;
+      if($scope.file){
+        $scope.produit.imageUrl=$scope.file.result.imageUrl;
+      }
       Produits.save($scope.produit,
         function success(value /*, responseHeaders*/){
+          Produits.mettreAjourLeProduitAvecUnUpdate({id: value._id},
+            $scope.produit, function success(value /*, responseHeaders*/){
+              $state.go('voirProduit', {id: value._id});
+            }, errorHandler($scope));
+
+
           $state.go('voirProduit', {id: value._id});
         }, errorHandler($scope));
     };
@@ -65,7 +72,9 @@ angular.module('chopShopApp')
   $scope.boutonEditerProduit = function(){
     console.log('**************Activation action EDIT******************');
     //Assignation du path de la nouvelle image au scope du produit
-    $scope.produit.imageUrl=$scope.file.result.imageUrl;
+    if($scope.file){
+      $scope.produit.imageUrl=$scope.file.result.imageUrl;
+    }
     Produits.mettreAjourLeProduitAvecUnUpdate({id: $scope.produit._id},
       $scope.produit, function success(value /*, responseHeaders*/){
         $state.go('voirProduit', {id: value._id});
@@ -86,6 +95,33 @@ uploadHandler = function ($scope, Upload, $timeout) {
       $scope.file = file;
       file.upload = Upload.upload({
         url: '/api/produits/'+$scope.produit._id+'/upload',
+        file: file
+      });
+
+      file.upload.then(function (response) {
+        $timeout(function () {
+          file.result = response.data;
+        });
+      }, function (response) {
+        if (response.status > 0){
+          console.log(response.status + ': ' + response.data);
+          errorHandler($scope)(response.status + ': ' + response.data);
+        }
+      });
+
+      file.upload.progress(function (evt) {
+        file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+      });
+    }
+  };
+};
+
+uploadHandler2 = function ($scope, Upload, $timeout) {
+  return function(file) {
+    if (file && !file.$error) {
+      $scope.file = file;
+      file.upload = Upload.upload({
+        url: '/api/produits/upload/image',
         file: file
       });
 

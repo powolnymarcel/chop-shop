@@ -21,6 +21,7 @@ router.get('/', controller.balanceMoiLaListeDeTousLesProduits);
 router.get('/:id', controller.montreMoiUnProduitUnique);
 router.post('/', controller.creeUnNouveauProduit);
 router.post('/:id/upload', multiparty(uploadOptions), controller.upload);
+router.post('/upload/image', multiparty(uploadOptions), controller.upload);
 router.put('/:id', controller.metAjourUnProduitExistant);
 router.patch('/:id', controller.metAjourUnProduitExistant);
 router.delete('/:id', controller.destructionSansReflechirDeUnProduit);
