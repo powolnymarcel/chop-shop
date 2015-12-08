@@ -40,9 +40,18 @@ angular.module('chopShopApp')
   .controller('NouveauProduitCtrl', function ($scope, $state, Produits,Upload,$timeout) {
     console.log('*****************************');
     $scope.upload = uploadHandler2($scope, Upload, $timeout);
+    console.log($scope.upload);
+    console.log('*****************************');
+    console.log($scope.file);
+
     $scope.produit = {}; // create a new instance
     $scope.boutonAjouterProduit = function(){
       if($scope.file){
+        console.log($scope.produit);
+        console.log('*****************************');
+        console.log('*****************************');
+        console.log('*****************************');
+
         $scope.produit.imageUrl=$scope.file.result.imageUrl;
       }
       Produits.save($scope.produit,
@@ -121,7 +130,7 @@ uploadHandler2 = function ($scope, Upload, $timeout) {
     if (file && !file.$error) {
       $scope.file = file;
       file.upload = Upload.upload({
-        url: '/api/produits/upload/image',
+        url: '/api/produits/test/upload/image',
         file: file
       });
 

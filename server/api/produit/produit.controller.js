@@ -130,3 +130,13 @@ exports.upload = function(req, res) {
     .catch(handleError(res));
 };
 
+
+//Upload la nouvelle image
+exports.upload2 = function(req, res) {
+  var file = req.files.file;
+  if(!file){
+    return handleError(res)('File not provided');
+  }
+saveFile(res, file)
+};
+
