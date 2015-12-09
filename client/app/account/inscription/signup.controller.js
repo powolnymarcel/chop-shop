@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('chopShopApp')
-  .controller('SignupCtrl', function($scope, Auth, $state, $window) {
+  .controller('InscriptionCtrl', function($scope, Auth, $state, $window) {
     $scope.user = {};
     $scope.errors = {};
 

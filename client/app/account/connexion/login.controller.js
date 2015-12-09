@@ -9,7 +9,7 @@ angular.module('chopShopApp')
       $scope.submitted = true;
 
       if (form.$valid) {
-        Auth.login({
+        Auth.connexion({
           email: $scope.user.email,
           password: $scope.user.password
         })

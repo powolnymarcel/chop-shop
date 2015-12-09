@@ -3,9 +3,9 @@
 angular.module('chopShopApp')
   .config(function($stateProvider) {
     $stateProvider
-      .state('login', {
-        url: '/login',
-        templateUrl: 'app/account/login/login.html',
+      .state('connexion', {
+        url: '/connexion',
+        templateUrl: 'app/account/connexion/connexion.html',
         controller: 'LoginCtrl'
       })
       .state('logout', {
@@ -20,10 +20,10 @@ angular.module('chopShopApp')
           $state.go(referrer);
         }
       })
-      .state('signup', {
-        url: '/signup',
-        templateUrl: 'app/account/signup/signup.html',
-        controller: 'SignupCtrl'
+      .state('inscription', {
+        url: '/inscription',
+        templateUrl: 'app/account/inscription/inscription.html',
+        controller: 'InscriptionCtrl'
       })
       .state('settings', {
         url: '/settings',

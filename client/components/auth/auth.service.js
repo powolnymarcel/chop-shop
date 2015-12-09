@@ -27,7 +27,7 @@ angular.module('chopShopApp')
        * @param  {Function} callback - optional, function(error, user)
        * @return {Promise}
        */
-      login: function(user, callback) {
+      connexion: function(user, callback) {
         return $http.post('/auth/local', {
           email: user.email,
           password: user.password

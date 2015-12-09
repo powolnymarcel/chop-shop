@@ -125,6 +125,8 @@ uploadHandler = function ($scope, Upload, $timeout) {
   };
 };
 
+
+//Trouver une solution pour l'upload de l'img à l'ajout d'un produit
 uploadHandler2 = function ($scope, Upload, $timeout) {
   return function(file) {
     if (file && !file.$error) {
