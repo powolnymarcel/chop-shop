@@ -9,8 +9,8 @@ module.exports = {
   DOMAIN:           'http://localhost:9000',
   SESSION_SECRET:   'chopshop-secret',
 
-  FACEBOOK_ID:      'app-id',
-  FACEBOOK_SECRET:  'secret',
+  FACEBOOK_ID:      '1676808429271773',
+  FACEBOOK_SECRET:  '74ab0a235031217a6357d7a26fc7b7f3',
 
   TWITTER_ID:       'app-id',
   TWITTER_SECRET:   'secret',
