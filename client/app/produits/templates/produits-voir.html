@@ -8,7 +8,9 @@
         <p>{{produit.description}}</p>
         <p>{{produit.price | currency:"€" }}</p>
         <p>
-          <a href="#" class="btn btn-primary" role="button">Acheter</a>
+          <ngcart-addtocart id="{{produit._id}}" quantity="1" quantity-max="9" name="{{produit.title}}" price="{{produit.price}}"
+                            template-url="components/ngcart/addtocart.html" data="produit">Acheter</ngcart-addtocart>
+
           <a ui-sref="produits" class="btn btn-default"
              role="button">Retour</a>
           <a ui-sref="editerProduit({id: produit._id})"

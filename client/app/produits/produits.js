@@ -22,5 +22,10 @@ angular.module('chopShopApp')
         url: '/produits/:id/editer',
         templateUrl: 'app/produits/templates/produits-editer.html',
         controller: 'EditerProduitCtrl'
+      })
+      .state('checkout', {
+        url: '/checkout',
+        templateUrl: 'app/produits/templates/produits-finaliser.html',
+        controller: 'ProductCheckoutCtrl'
       });
   });

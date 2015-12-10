@@ -7,7 +7,8 @@ angular.module('chopShopApp', [
   'btford.socket-io',
   'ui.router',
   'ui.bootstrap',
-  'ngFileUpload'
+  'ngFileUpload',
+  'ngCart'
 ])
   .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
@@ -45,6 +46,7 @@ angular.module('chopShopApp', [
   })
 
   .run(function($rootScope, $state, Auth) {
+    $rootScope.$state = $state;
     // Redirect to login if route requires auth and the user is not logged in
     $rootScope.$on('$stateChangeStart', function(event, next) {
       if (next.authenticate) {

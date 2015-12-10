@@ -17,11 +17,13 @@
           <p>{{produit.description | limitTo: 100}} ...</p>
           <p>{{produit.price | currency:"€" }}</p>
           <p>
-            <a href="#" class="btn btn-primary" role="button">Acheter</a>
+          <ngcart-addtocart id="{{produit._id}}" quantity="1" quantity-max="9" name="{{produit.title}}" price="{{produit.price}}"
+                            template-url="components/ngcart/addtocart.html" data="produit">Acheter</ngcart-addtocart>
             <a ui-sref="voirProduit({id: produit._id})"
                class="btn btn-default" role="button">Details</a>
           </p>
         </div>
+
       </div>
     </div>
   </div>

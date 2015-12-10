@@ -1,0 +1,10 @@
+<div class="blockcart_top clearfix" id="cart" ng-hide="$state.includes('checkout')">
+  <div class="media heading">
+    <a id="CartToggle" ui-sref="checkout">
+      <div class="title-cart pull-left">
+        <span class="glyphicon glyphicon-shopping-cart"><span id="CartCount">{{ ngCart.getTotalItems() }}</span></span>
+      </div>
+
+    </a>
+  </div>
+</div>
