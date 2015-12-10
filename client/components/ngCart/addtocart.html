@@ -6,9 +6,51 @@
     <span ng-show="quantityMax">
       <select name="quantity" id="quantity" ng-model="q" ng-options=" v for v in qtyOpt"></select>
     </span>
-    <a class="btn btn-primary" ng-click="ngCart.addItem(id, name, price, q, data)" ng-transclude></a>
+    <a class="btn btn-primary" id="ajouterPanier" ng-click="ngCart.addItem(id, name, price, q, data)" ng-transclude></a>
   </span>
   <mark  ng-show="inCart()">
-    <a class="btn btn-success" ng-click="ngCart.removeItemById(id)">Ajouté</a>
+    <a class="btn btn-success" ng-click="ngCart.removeItemById(id)">Retirer</a>
   </mark>
 </span>
+<script>
+
+
+  $('#ajouterPanier').on('click', function () {
+    var panier = $('.blockcart_top');
+    var imgtodrag = $('.imgProdUnique');
+    if (imgtodrag) {
+      var imgclone = imgtodrag.clone()
+        .offset({
+          top: imgtodrag.offset().top,
+          left: imgtodrag.offset().left
+        })
+        .css({
+          'opacity': '0.5',
+          'position': 'absolute',
+          'height': '150px',
+          'width': '150px',
+          'z-index': '100'
+        })
+        .appendTo($('body'))
+        .animate({
+          'top': panier.offset().top ,
+          'left': panier.offset().left,
+          'width': 75,
+          'height': 75
+        }, 1000);
+
+      setTimeout(function () {
+        panier.effect("shake", {
+          times: 2
+        }, 200);
+      }, 1500);
+
+      imgclone.animate({
+        'width': 0,
+        'height': 0
+      }, function () {
+        $(this).detach()
+      });
+    }
+  });
+</script>

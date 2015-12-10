@@ -6,7 +6,7 @@
     <ngcart-cart template-url="components/ngcart/cart.html"></ngcart-cart>
   </div>
 
-  <div class="row">
+  <div class="row"  ng-hide="ngCart.getTotalItems() === 0">
     <h1>Choisir une methode de paiement</h1>
     <p class="help-block">{{ errors }}</p><br>
     <div class="col-md-6">
