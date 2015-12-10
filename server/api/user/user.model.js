@@ -80,7 +80,7 @@ UserSchema
     return this.constructor.findOneAsync({ email: value })
       .then(function(user) {
         if (user) {
-          if (self.id === user.id) {
+          if (self.id === user.id && self.id === user.id ) {
             return respond(true);
           }
           return respond(false);
@@ -90,7 +90,7 @@ UserSchema
       .catch(function(err) {
         throw err;
       });
-  }, 'The specified email address is already in use.');
+  }, 'ThK specified email address is already in use.');
 
 var validatePresenceOf = function(value) {
   return value && value.length;
