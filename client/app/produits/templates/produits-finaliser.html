@@ -2,17 +2,17 @@
 
 <div class="container">
   <div class="row">
-    <h1>Cart</h1>
+    <h1>Panier</h1>
     <ngcart-cart template-url="components/ngcart/cart.html"></ngcart-cart>
   </div>
 
   <div class="row">
-    <h1>Choose a payment method</h1>
+    <h1>Choisir une methode de paiement</h1>
     <p class="help-block">{{ errors }}</p><br>
     <div class="col-md-6">
       <form>
-        <braintree-dropin options="paymentOptions">Loading...</braintree-dropin>
-        <input type="submit" value="Purchase" />
+        <braintree-dropin options="paymentOptions">Chargement...</braintree-dropin>
+        <input type="submit" value="Payer" />
       </form>
     </div>
   </div>
