@@ -19,6 +19,8 @@ router.post('/:id/upload', multiparty(uploadOptions), controller.upload);
 //J'ai expres choisi des noms assez long pour qu'il n'y ai pas d'ambiguité avec des get par ici et des get par là....
 router.get('/', controller.balanceMoiLaListeDeTousLesProduits);
 router.get('/:id', controller.montreMoiUnProduitUnique);
+router.get('/:slug/catalog', controller.catalog);
+router.get('/:term/search', controller.search);
 router.post('/', controller.creeUnNouveauProduit);
 router.post('/:id/upload', multiparty(uploadOptions), controller.upload);
 router.post('/test/upload/image', multiparty(uploadOptions), controller.upload2);

@@ -6,15 +6,24 @@
 //*******************************************************************************************
 angular.module('chopShopApp')
   .factory('Produits', function ($resource) {
-    return $resource('/api/produits/:id', null, {
+    return $resource('/api/produits/:id/:controller', null, {
       //*******************************************************************************************
       // AngularResources contient les actions -->>>>>> GET- save -query- remove -delete !!!!!!!!!!
       //Mais pas de update donc on crée l'action : mettreAjourLeProduitAvecUnUpdate
       //*******************************************************************************************
-      'mettreAjourLeProduitAvecUnUpdate': { method: 'PUT'}
+      'mettreAjourLeProduitAvecUnUpdate': { method: 'PUT'},
+      'catalog':{ method: 'GET', isArray: true,
+        params: {
+          controller: 'catalog'
+        }
+      },
+      'search': { method: 'GET', isArray: true,
+        params: {
+          controller: 'search'
+        }
+      }
     });
   });
-
 
 
 

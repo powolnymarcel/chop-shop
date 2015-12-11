@@ -27,5 +27,10 @@ angular.module('chopShopApp')
         url: '/checkout',
         templateUrl: 'app/produits/templates/produits-finaliser.html',
         controller: 'ProductCheckoutCtrl'
+      })
+      .state('productCatalog', {
+        url: '/produits/:slug/catalog',
+        templateUrl: 'app/produits/templates/produits-liste.html',
+        controller: 'ProductCatalogCtrl'
       });
   });

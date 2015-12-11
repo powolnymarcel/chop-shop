@@ -1,14 +1,14 @@
 <navbar></navbar>
 <div class="container">
   <div class="row">
-    <div class="col-sm-6 col-md-4">
-      <h1>Produits</h1>
-      <p ng-show="produits.length < 1">Aucuns produits à afficher</p>
-      <a ui-sref="nouveauProduit" style="color: white"><button class="btn btn-primary">Nouveau produit</button></a>
+    <div class="col-lg-12">
+      <h1 class="page-header">Produits <small>{{query}}</small></h1>
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-6 col-md-4" ng-repeat="produit in produits">
+    <div class="col-md-3" ng-include="'components/sidebar/sidebar.html'"></div>
+    <div class="col-md-3" ng-show="produits.length < 1">Aucuns produits à afficher</div>
+    <div class="col-md-3" ng-repeat="produit in produits">
       <div class="thumbnail">
         <img class="imgProdListing imgProdUnique" src="{{produit.imageUrl}}"
              alt="{{produit.title}}">
@@ -17,15 +17,16 @@
           <p>{{produit.description | limitTo: 100}} ...</p>
           <p>{{produit.price | currency:"€" }}</p>
           <p>
-          <ngcart-addtocart id="{{produit._id}}" quantity="1" quantity-max="9" name="{{produit.title}}" price="{{produit.price}}"
-                            template-url="components/ngcart/addtocart.html" data="produit">Acheter</ngcart-addtocart>
+            <ngcart-addtocart id="{{produit._id}}" quantity="1" quantity-max="9" name="{{produit.title}}" price="{{produit.price}}"
+                              template-url="components/ngcart/addtocart.html" data="produit">Acheter</ngcart-addtocart>
             <a ui-sref="voirProduit({id: produit._id})"
                class="btn btn-default" role="button">Details</a>
           </p>
         </div>
 
       </div>
-    </div>
-  </div>
+          </div>
+  </div><a ui-sref="nouveauProduit" style="color: white"><button class="btn btn-primary">Nouveau produit</button></a>
+
 </div>
 <footer></footer>

@@ -12,6 +12,7 @@
 var _ = require('lodash');
 var Produit = require('./produit.model');
 var path = require('path');
+var Catalog = require('../catalog/catalog.model');
 
 function handleError(res, statusCode) {
   statusCode = statusCode || 500;
@@ -140,3 +141,32 @@ exports.upload2 = function(req, res) {
 saveFile(res, file)
 };
 
+exports.catalog = function(req, res) {
+  Catalog
+    .findOne({ slug: req.params.slug })
+    .then(function (catalog) {
+      var catalog_ids = [catalog._id].concat(catalog.children);
+      console.log(catalog_ids, catalog);
+      return Produit
+        .find({'categories': { $in: catalog_ids } })
+        .populate('categories')
+        .exec();
+    })
+    .then(function (produits) {
+      res.json(200, produits);
+    })
+    .then(null, function (err) {
+      handleError(res, err);
+    });
+};
+
+exports.search = function(req, res) {
+  Produit
+    //Pour les champs qui ont un index "text" dans le modele
+    .find({ $text: { $search: req.params.term }})
+    .populate('categories')
+    .exec(function (err, produits) {
+      if(err) { return handleError(res, err); }
+      return res.json(200, produits);
+    });
+};

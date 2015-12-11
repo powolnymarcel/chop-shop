@@ -11,6 +11,22 @@ angular.module('chopShopApp')
     // 'Produits' pour le nom du factory et 'query()' pour le nom de l'action contenue dans les resources
 
     $scope.produits = Produits.query();
+    //Ici on écoute le broadcast
+    $scope.$on('search:term', function (event, data) {
+      if(data.length) {
+        $scope.produits = Produits.search({id: data});
+        $scope.query = data;
+      }
+      else {
+        $scope.produits = Produits.query();
+        $scope.query = '';
+      }
+    });
+  })
+  .controller('ProductCatalogCtrl', function ($scope, $stateParams,Produits)
+  {
+    $scope.produits = Produits.catalog({id: $stateParams.slug});
+    $scope.query = $stateParams.slug;
   })
 
   .controller('VueProduitCtrl', function ($scope, $state,
@@ -37,7 +53,12 @@ angular.module('chopShopApp')
         }, errorHandler($scope));
     };
   })
-  .controller('NouveauProduitCtrl', function ($scope, $state, Produits,Upload,$timeout) {
+  .controller('NouveauProduitCtrl', function ($scope, $state, Produits,Upload,$timeout,Catalog) {
+    $scope.categories = Catalog.query();
+    console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
+    console.log($scope.categories);
+    console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
+
     console.log('*****************************');
     $scope.upload = uploadHandler2($scope, Upload, $timeout);
     console.log($scope.upload);
@@ -102,7 +123,7 @@ angular.module('chopShopApp')
         onPaymentMethodReceived: function(payload) {
           angular.merge(payload, ngCart.toObject());
           payload.total = payload.totalCost;
-          $http.post('/api/orders', payload)
+          $http.post('/api/commande', payload)
             .then(function success () {
               ngCart.empty(true);
               $state.go('products');

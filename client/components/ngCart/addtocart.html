@@ -11,13 +11,19 @@
   <mark  ng-show="inCart()">
     <a class="btn btn-success" ng-click="ngCart.removeItemById(id)">Retirer</a>
   </mark>
+      <mark  ng-show="inCart()">
+        Produit dans votre panier. <a ng-click="ngCart.removeItemById(id)" style="cursor: pointer;">Retirer</a>
+      </mark>
 </span>
+
 <script>
 
 
   $('#ajouterPanier').on('click', function () {
+
     var panier = $('.blockcart_top');
     var imgtodrag = $('.imgProdUnique');
+
     if (imgtodrag) {
       var imgclone = imgtodrag.clone()
         .offset({
@@ -41,6 +47,7 @@
 
       setTimeout(function () {
         panier.effect("shake", {
+          // panier.effect("bounce", {
           times: 2
         }, 200);
       }, 1500);

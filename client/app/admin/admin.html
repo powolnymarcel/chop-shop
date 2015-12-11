@@ -1,12 +1,55 @@
 <navbar></navbar>
 
 <div class="container">
-  <p>The delete user and user index api routes are restricted to users with the 'admin' role.</p>
-  <ul class="list-group">
-    <li class="list-group-item" ng-repeat="user in users">
-        <strong>{{user.name}}</strong><br>
-        <span class="text-muted">{{user.email}}</span>
-        <a ng-click="delete(user)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>
-    </li>
-  </ul>
+
+
+
+  <h1>Utilisateurs</h1>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <tr>
+        <th>Utilisateur</th>
+        <th>Role</th>
+        <th>Provenance</th>
+        <th>Action</th>
+      </tr>
+      <tr ng-repeat="user in users">
+        <td>{{user.name}} <span class="text-muted">{{user.email}}</span></td>
+        <td class="success" ng-class="{'success' : user.role == 'admin', 'info': user.role == 'user' }">{{user.role}}</td>
+        <td>{{user.provider}}</td>
+        <td>
+          <a ng-click="deleteUser(user)"><i class="fa fa-2x fa-trash-o"></i></a>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <h1>Produits</h1>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <tr>
+        <th>Nom</th>
+        <th>Prix</th>
+        <th>Stock</th>
+        <th>Categories</th>
+        <th>Actions</th>
+      </tr>
+      <tr ng-repeat="produit in produits">
+        <td>{{produit.title}}</td>
+        <td>{{produit.price | currency:"€"}}</td>
+        <td>{{produit.stock}}</td>
+        <td>
+          <span ng-repeat="category in product.categories">
+            <a ui-sref="productCatalog({slug: category.slug})">{{category.name}}</a>
+          </span>
+        </td>
+        <td>
+          <a ng-click="showProduct(produit)"><i class="fa fa-2x fa-eye"></i></a>
+          <a ng-click="editProduct(produit)"><i class="fa fa-2x fa-pencil"></i></a>
+          <a ng-click="deleteProduct(produit)"><i class="fa fa-2x fa-trash-o"></i></a>
+        </td>
+      </tr>
+    </table>
+  </div>
+
 </div>

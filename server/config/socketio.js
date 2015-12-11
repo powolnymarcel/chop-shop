@@ -18,6 +18,8 @@ function onConnect(socket) {
   });
 
   // Insert sockets below
+  require('../api/catalog/catalog.socket').register(socket);
+  require('../api/commande/commande.socket').register(socket);
   require('../api/produit/produit.socket').register(socket);
 }
 

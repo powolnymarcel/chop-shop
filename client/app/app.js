@@ -8,7 +8,8 @@ angular.module('chopShopApp', [
   'ui.router',
   'ui.bootstrap',
   'ngFileUpload',
-  'ngCart'
+  'ngCart',
+  'braintree-angular'
 ])
   .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
@@ -45,17 +46,17 @@ angular.module('chopShopApp', [
     };
   })
 
-  .run(function($rootScope, $state, Auth) {
-    $rootScope.$state = $state;
-    // Redirect to login if route requires auth and the user is not logged in
-    $rootScope.$on('$stateChangeStart', function(event, next) {
-      if (next.authenticate) {
-        Auth.isLoggedIn(function(loggedIn) {
-          if (!loggedIn) {
-            event.preventDefault();
-            $state.go('login');
-          }
-        });
-      }
-    });
+.run(function($rootScope, $state, Auth) {
+  $rootScope.$state = $state;
+  // Redirect to login if route requires auth and the user is not logged in
+  $rootScope.$on('$stateChangeStart', function(event, next) {
+    if (next.authenticate) {
+      Auth.isLoggedIn(function(loggedIn) {
+        if (!loggedIn) {
+          event.preventDefault();
+          $state.go('login');
+        }
+      });
+    }
   });
+});
